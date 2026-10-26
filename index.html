@@ -14,25 +14,31 @@
     body { font-family: 'Inter', sans-serif; background: #f0f2f5; min-height: 100vh; color: #333; }
 
     /* LOGIN PAGE - DENGAN BACKGROUND PNG */
+    /* ============================================
+       LOGIN PAGE - BACKGROUND MURNI (TANPA GRADASI)
+       ============================================ */
     .login-page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background:
-        linear-gradient(135deg, rgba(22,82,84,.82) 0%, rgba(31,99,102,.76) 50%, rgba(22,82,84,.84) 100%),
-        url('background.png') center / cover no-repeat;
+      /* Hanya menampilkan gambar background.png tanpa lapisan gradasi warna */
+      background: url('background.png') center / cover no-repeat;
       background-attachment: fixed;
       position: relative;
       overflow: hidden;
     }
     
+    /* Efek cahaya berputar yang SANGAT SUBTLE agar tidak mengganggu keindahan gambar asli */
     .login-page::before {
       content: '';
       position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-      animation: rotateBg 30s linear infinite;
+      top: -50%; 
+      left: -50%;
+      width: 200%; 
+      height: 200%;
+      /* Opacity diturunkan drastis (0.03) agar gambar background tetap jadi bintang utama */
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+      animation: rotateBg 40s linear infinite;
       pointer-events: none;
       z-index: 0;
     }
@@ -49,265 +55,692 @@
       z-index: 2; 
     }
     
-    .login-card {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
-      width: 100%; 
-      max-width: 480px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-      animation: slideUp 0.6s ease-out;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.7);
-      position: relative;
-    }
-    
-    @keyframes slideUp { 
-      from { opacity: 0; transform: translateY(30px); } 
-      to { opacity: 1; transform: translateY(0); } 
-    }
-    
-    /* HEADER SECTION DENGAN BACKGROUND IMAGE LEBIH KONTRAS */
-    .login-header {
-      position: relative;
-      /* Overlay lebih gelap & netral agar gambar background lebih menonjol */
-      background: 
-        linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.65) 50%, rgba(15, 23, 42, 0.80) 100%),
-        url('background.png') center / cover no-repeat;
-      padding: 50px 30px 60px;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .login-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    /* LOGOS - 3 Logo Sejajar DI DALAM HEADER */
-    .login-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 25px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .login-logo .logo-icon {
-      width: 65px;
-      height: 65px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .login-logo .logo-icon:hover {
-      transform: translateY(-3px);
-    }
-
-    .login-logo .logo-icon img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-    }
-
-    /* Responsive untuk 3 logo */
-    @media (max-width: 480px) {
-      .login-logo {
-        gap: 12px;
-      }
-      
-      .login-logo .logo-icon {
-        width: 56px;
-        height: 56px;
-        border-radius: 12px;
-      }
-      
-      .login-logo .logo-icon img {
-        width: 40px;
-        height: 40px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .login-logo {
-        gap: 10px;
-      }
-      
-      .login-logo .logo-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 10px;
-      }
-      
-      .login-logo .logo-icon img {
-        width: 36px;
-        height: 36px;
-      }
-    }
-
-    .login-header h1 { 
-      font-size: 32px; 
-      font-weight: 800; 
-      color: white; 
-      letter-spacing: -0.5px; 
-      margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-      /* Aksen gradient subtle pada teks */
-      background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .login-header p { 
-      font-size: 14px; 
-      color: rgba(226, 232, 240, 0.95); 
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
-      text-shadow: 0 1px 5px rgba(0,0,0,0.3);
-    }
-
-    /* WAVE DECORATION */
-    .wave-decoration {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.98);
-      clip-path: polygon(0 40%, 20% 60%, 40% 35%, 60% 55%, 80% 40%, 100% 60%, 100% 100%, 0 100%);
-    }
-    
-    .wave-decoration::before {
-      content: '';
-      position: absolute;
-      bottom: 5px;
-      left: 0;
-      right: 0;
-      height: 30px;
-      background: linear-gradient(135deg, #e8f4f5, #f0f8f8);
-      clip-path: polygon(0 50%, 15% 65%, 30% 45%, 45% 60%, 60% 40%, 75% 55%, 90% 45%, 100% 60%, 100% 100%, 0 100%);
-      opacity: 0.6;
-    }
-
     /* ============================================
-       LOGIN TABS - 3 BUTTON RESPONSIVE LAYOUT
-       ============================================ */
-    .login-tabs {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 0 30px;
-      margin-top: -30px;
-      position: relative;
-      z-index: 10;
-    }
+   LOGIN CARD - ENHANCED DESIGN
+   ============================================ */
+.login-card {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-radius: 28px;
+  width: 100%;
+  max-width: 460px;
+  /* Shadow lebih dramatic untuk efek floating */
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: slideUp 0.6s ease-out;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
 
-    /* Baris 1: Login Dashboard (full-width) */
-    .login-tab-primary {
-      width: 100%;
-      padding: 16px 24px;
-      background: linear-gradient(135deg, #1f6366 0%, #2a8a8e 50%, #34a5a9 100%);
-      color: white;
-      border: none;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-align: center;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 25px rgba(31, 99, 102, 0.35);
-      position: relative;
-      overflow: hidden;
-    }
+/* ============================================
+   LOGIN HEADER - MODERN GRADIENT DENGAN DEPTH
+   ============================================ */
+.login-header {
+  position: relative;
+  /* Gradient mesh yang lebih dinamis */
+  background: 
+    linear-gradient(135deg, 
+      rgba(31, 99, 102, 0.95) 0%, 
+      rgba(42, 138, 142, 0.90) 30%,
+      rgba(52, 165, 169, 0.85) 60%,
+      rgba(31, 99, 102, 0.95) 100%
+    ),
+    url('background.png') center / cover no-repeat;
+  padding: 45px 30px 55px;
+  text-align: center;
+  overflow: hidden;
+}
 
-    .login-tab-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.6s ease;
-    }
+/* Animated mesh gradient overlay */
+.login-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(52, 211, 235, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(116, 185, 255, 0.25) 0%, transparent 35%),
+    radial-gradient(circle at 50% 80%, rgba(52, 211, 235, 0.2) 0%, transparent 45%);
+  pointer-events: none;
+  animation: meshMove 15s ease-in-out infinite;
+}
 
-    .login-tab-primary:hover::before {
-      left: 100%;
-    }
+@keyframes meshMove {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15px, -15px) scale(1.05); }
+  66% { transform: translate(-10px, 10px) scale(0.95); }
+}
 
-    .login-tab-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(31, 99, 102, 0.45);
-    }
+/* Subtle pattern overlay */
+.login-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 15px,
+      rgba(255, 255, 255, 0.03) 15px,
+      rgba(255, 255, 255, 0.03) 30px
+    );
+  pointer-events: none;
+}
 
-    .login-tab-primary i {
-      font-size: 18px;
-    }
+/* ============================================
+   LOGO SECTION - COMPACT & ELEGANT
+   ============================================ */
+.login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 10;
+}
 
-    /* Baris 2: Dashboard Publik + Pengaduan (2 kolom) */
-    .login-tabs-secondary {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      width: 100%;
-    }
+.login-logo .logo-icon {
+  width: 58px;
+  height: 58px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
 
-    .login-tab-secondary {
-      padding: 14px 16px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border: 2px solid #e8f4f5;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: center;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-      position: relative;
-      overflow: hidden;
-    }
+.login-logo .logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  transition: left 0.7s ease;
+}
 
-    .login-tab-secondary i {
-      font-size: 16px;
-      transition: transform 0.3s ease;
-    }
+.login-logo .logo-icon:hover::before {
+  left: 100%;
+}
 
-    .login-tab-secondary:hover i {
-      transform: scale(1.15);
-    }
+.login-logo .logo-icon:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(52, 211, 235, 0.4);
+}
 
+.login-logo .logo-icon img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+/* ============================================
+   HEADER TEXT - HIGH CONTRAST
+   ============================================ */
+.login-header h1 {
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+  /* Gradient text untuk efek premium */
+  background: linear-gradient(135deg, #ffffff 0%, #e0f7fa 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.1); }
+}
+
+.login-header p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================
+   WAVE DECORATION - SMOOTH & NATURAL
+   ============================================ */
+.wave-decoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 55px;
+  background: rgba(255, 255, 255, 0.98);
+  clip-path: polygon(
+    0 45%, 
+    8% 58%, 
+    16% 48%, 
+    24% 62%, 
+    32% 52%, 
+    40% 65%, 
+    48% 55%, 
+    56% 62%, 
+    64% 50%, 
+    72% 60%, 
+    80% 52%, 
+    88% 58%, 
+    96% 50%, 
+    100% 55%, 
+    100% 100%, 
+    0 100%
+  );
+}
+
+.wave-decoration::before {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  height: 35px;
+  background: linear-gradient(135deg, #e8f4f5 0%, #f0f9ff 50%, #e8f4f5 100%);
+  clip-path: polygon(
+    0 50%, 
+    8% 62%, 
+    16% 52%, 
+    24% 65%, 
+    32% 55%, 
+    40% 68%, 
+    48% 58%, 
+    56% 65%, 
+    64% 53%, 
+    72% 63%, 
+    80% 55%, 
+    88% 62%, 
+    96% 53%, 
+    100% 58%, 
+    100% 100%, 
+    0 100%
+  );
+  opacity: 0.7;
+}
+
+/* ============================================
+   LOGIN TABS - MODERN FLOATING BUTTONS
+   ============================================ */
+.login-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 28px;
+  margin-top: -28px;
+  position: relative;
+  z-index: 10;
+}
+
+.login-tabs-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.login-tab-secondary {
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border: 2px solid #e8f4f5;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-tab-secondary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.login-tab-secondary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.login-tab-secondary i {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.login-tab-secondary:hover i {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.login-tab-secondary span {
+  position: relative;
+  z-index: 1;
+}
+
+.login-tab-publik {
+  color: #0891b2;
+  border-color: #cffafe;
+  background: linear-gradient(135deg, #ecfeff 0%, #f0f9ff 100%);
+}
+
+.login-tab-publik:hover {
+  border-color: #0891b2;
+  color: #0e7490;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(8, 145, 178, 0.25);
+}
+
+.login-tab-pengaduan {
+  color: #dc2626;
+  border-color: #fee2e2;
+  background: linear-gradient(135deg, #fef2f2 0%, #fff7ed 100%);
+}
+
+.login-tab-pengaduan:hover {
+  border-color: #dc2626;
+  color: #b91c1c;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(220, 38, 38, 0.25);
+}
+
+/* ============================================
+   FORM SECTION - MODERN INPUTS
+   ============================================ */
+.login-body {
+  padding: 28px 28px 32px;
+  background: white;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.form-group label span {
+  color: #e74c3c;
+  font-weight: 800;
+}
+
+.form-group .input-wrapper {
+  position: relative;
+}
+
+.form-group .input-wrapper i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 15px 16px 15px 48px;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  font-size: 14.5px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #f9fafb;
+  color: #1f2937;
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.form-group input:hover {
+  border-color: #d1d5db;
+  background: #ffffff;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1f6366;
+  background: white;
+  box-shadow: 
+    0 0 0 4px rgba(31, 99, 102, 0.1),
+    0 4px 12px rgba(31, 99, 102, 0.15);
+  transform: translateY(-1px);
+}
+
+.form-group input:focus + i,
+.form-group .input-wrapper:focus-within i {
+  color: #1f6366;
+}
+
+/* ============================================
+   LOGIN BUTTON - ENHANCED
+   ============================================ */
+.btn-login {
+  width: 100%;
+  padding: 17px;
+  background: linear-gradient(135deg, #1f6366 0%, #2a8a8e 50%, #34a5a9 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+  box-shadow: 
+    0 8px 24px rgba(31, 99, 102, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-login:hover::before {
+  left: 100%;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 32px rgba(31, 99, 102, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+
+.btn-login:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============================================
+   DIVIDER - MODERN
+   ============================================ */
+.login-divider {
+  display: flex;
+  align-items: center;
+  margin: 28px 0;
+  gap: 16px;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d1d5db, transparent);
+}
+
+.login-divider span {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   SOCIAL LINKS - COMPACT & MODERN
+   ============================================ */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.social-links a {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-links a:hover::before {
+  opacity: 1;
+}
+
+.social-links a.facebook { background: linear-gradient(135deg, #1877F2, #0d5bc6); }
+.social-links a.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-links a.tiktok { background: linear-gradient(135deg, #000000, #25F4EE); }
+.social-links a.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+
+.social-links a:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================
+   LOGIN FOOTER - ENHANCED
+   ============================================ */
+.login-footer {
+  text-align: center;
+  padding: 24px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.login-footer p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 480px) {
+  .login-card {
+    border-radius: 24px;
+    margin: 0 12px;
+  }
+  
+  .login-header {
+    padding: 38px 20px 48px;
+  }
+  
+  .login-header h1 {
+    font-size: 26px;
+  }
+  
+  .login-header p {
+    font-size: 12.5px;
+  }
+  
+  .login-logo .logo-icon {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .login-logo .logo-icon img {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .login-body {
+    padding: 24px 20px 28px;
+  }
+  
+  .login-tabs {
+    padding: 0 20px;
+  }
+  
+  .login-tab-secondary {
+    padding: 12px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-header h1 {
+    font-size: 24px;
+  }
+  
+  .login-logo {
+    gap: 10px;
+  }
+  
+  .login-logo .logo-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .login-logo .logo-icon img {
+    width: 34px;
+    height: 34px;
+  }
+}
+/* Card entrance animation */
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.login-card {
+  animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Staggered animation untuk elements di dalam card */
+.login-logo {
+  animation: fadeInDown 0.6s ease 0.2s both;
+}
+
+.login-header h1 {
+  animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.login-header p {
+  animation: fadeInUp 0.6s ease 0.4s both;
+}
+
+.login-tabs {
+  animation: fadeInUp 0.6s ease 0.5s both;
+}
+
+.login-body {
+  animation: fadeInUp 0.6s ease 0.6s both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
     /* Dashboard Publik - Warna Biru-Cyan (transparansi data) */
     .login-tab-publik {
       color: #0891b2;
