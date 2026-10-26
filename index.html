@@ -7,36 +7,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ============================================
-       CSS RESET & BASE
-       ============================================ */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #f0f2f5; min-height: 100vh; color: #333; }
 
-    /* LOGIN PAGE - DENGAN BACKGROUND PNG */
-    /* ============================================
-       LOGIN PAGE - BACKGROUND MURNI (TANPA GRADASI)
-       ============================================ */
+    /* LOGIN PAGE */
     .login-page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      /* Hanya menampilkan gambar background.png tanpa lapisan gradasi warna */
       background: url('background.png') center / cover no-repeat;
       background-attachment: fixed;
       position: relative;
       overflow: hidden;
     }
     
-    /* Efek cahaya berputar yang SANGAT SUBTLE agar tidak mengganggu keindahan gambar asli */
     .login-page::before {
       content: '';
       position: absolute;
-      top: -50%; 
-      left: -50%;
-      width: 200%; 
-      height: 200%;
-      /* Opacity diturunkan drastis (0.03) agar gambar background tetap jadi bintang utama */
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
       background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
       animation: rotateBg 40s linear infinite;
       pointer-events: none;
@@ -55,693 +44,143 @@
       z-index: 2; 
     }
     
-    /* ============================================
-   LOGIN CARD - ENHANCED DESIGN
-   ============================================ */
-.login-card {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  border-radius: 28px;
-  width: 100%;
-  max-width: 460px;
-  /* Shadow lebih dramatic untuk efek floating */
-  box-shadow: 
-    0 30px 80px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-  animation: slideUp 0.6s ease-out;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  position: relative;
-}
+    .login-card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border-radius: 28px;
+      width: 100%; 
+      max-width: 460px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      animation: slideUp 0.6s ease-out;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+    }
+    
+    @keyframes slideUp { 
+      from { opacity: 0; transform: translateY(30px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    
+    .login-header {
+      position: relative;
+      background: linear-gradient(135deg, rgba(31, 99, 102, 0.95) 0%, rgba(42, 138, 142, 0.90) 30%, rgba(52, 165, 169, 0.85) 60%, rgba(31, 99, 102, 0.95) 100%);
+      padding: 45px 30px 55px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .login-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(52, 211, 235, 0.3) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 20%, rgba(116, 185, 255, 0.25) 0%, transparent 35%);
+      pointer-events: none;
+      animation: meshMove 15s ease-in-out infinite;
+    }
+
+    @keyframes meshMove {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(15px, -15px) scale(1.05); }
+      66% { transform: translate(-10px, 10px) scale(0.95); }
+    }
+
+    .login-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .login-logo .logo-icon {
+      width: 58px;
+      height: 58px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    .login-logo .logo-icon:hover {
+      transform: translateY(-4px) scale(1.08);
+    }
+
+    .login-logo .logo-icon img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .login-header h1 { 
+      font-size: 30px; 
+      font-weight: 800; 
+      color: white; 
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.5);
+    }
+
+    .login-header p { 
+      font-size: 13.5px; 
+      color: rgba(255, 255, 255, 0.95); 
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .wave-decoration {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 55px;
+      background: rgba(255, 255, 255, 0.98);
+      clip-path: polygon(0 45%, 8% 58%, 16% 48%, 24% 62%, 32% 52%, 40% 65%, 48% 55%, 56% 62%, 64% 50%, 72% 60%, 80% 52%, 88% 58%, 96% 50%, 100% 55%, 100% 100%, 0 100%);
+    }
+
+    .login-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0 28px;
+      margin-top: -28px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .login-tabs-secondary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .login-tab-secondary {
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 2px solid #e8f4f5;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
 
-/* ============================================
-   LOGIN HEADER - MODERN GRADIENT DENGAN DEPTH
-   ============================================ */
-.login-header {
-  position: relative;
-  /* Gradient mesh yang lebih dinamis */
-  background: 
-    linear-gradient(135deg, 
-      rgba(31, 99, 102, 0.95) 0%, 
-      rgba(42, 138, 142, 0.90) 30%,
-      rgba(52, 165, 169, 0.85) 60%,
-      rgba(31, 99, 102, 0.95) 100%
-    ),
-    url('background.png') center / cover no-repeat;
-  padding: 45px 30px 55px;
-  text-align: center;
-  overflow: hidden;
-}
-
-/* Animated mesh gradient overlay */
-.login-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(52, 211, 235, 0.3) 0%, transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(116, 185, 255, 0.25) 0%, transparent 35%),
-    radial-gradient(circle at 50% 80%, rgba(52, 211, 235, 0.2) 0%, transparent 45%);
-  pointer-events: none;
-  animation: meshMove 15s ease-in-out infinite;
-}
-
-@keyframes meshMove {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(15px, -15px) scale(1.05); }
-  66% { transform: translate(-10px, 10px) scale(0.95); }
-}
-
-/* Subtle pattern overlay */
-.login-header::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 15px,
-      rgba(255, 255, 255, 0.03) 15px,
-      rgba(255, 255, 255, 0.03) 30px
-    );
-  pointer-events: none;
-}
-
-/* ============================================
-   LOGO SECTION - COMPACT & ELEGANT
-   ============================================ */
-.login-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 22px;
-  position: relative;
-  z-index: 10;
-}
-
-.login-logo .logo-icon {
-  width: 58px;
-  height: 58px;
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.login-logo .logo-icon::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-  transition: left 0.7s ease;
-}
-
-.login-logo .logo-icon:hover::before {
-  left: 100%;
-}
-
-.login-logo .logo-icon:hover {
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(52, 211, 235, 0.4);
-}
-
-.login-logo .logo-icon img {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
-}
-
-/* ============================================
-   HEADER TEXT - HIGH CONTRAST
-   ============================================ */
-.login-header h1 {
-  font-size: 30px;
-  font-weight: 800;
-  color: white;
-  letter-spacing: -0.5px;
-  margin-bottom: 10px;
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
-  /* Gradient text untuk efek premium */
-  background: linear-gradient(135deg, #ffffff 0%, #e0f7fa 50%, #ffffff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.1); }
-}
-
-.login-header p {
-  font-size: 13.5px;
-  color: rgba(255, 255, 255, 0.95);
-  line-height: 1.6;
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-
-/* ============================================
-   WAVE DECORATION - SMOOTH & NATURAL
-   ============================================ */
-.wave-decoration {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 55px;
-  background: rgba(255, 255, 255, 0.98);
-  clip-path: polygon(
-    0 45%, 
-    8% 58%, 
-    16% 48%, 
-    24% 62%, 
-    32% 52%, 
-    40% 65%, 
-    48% 55%, 
-    56% 62%, 
-    64% 50%, 
-    72% 60%, 
-    80% 52%, 
-    88% 58%, 
-    96% 50%, 
-    100% 55%, 
-    100% 100%, 
-    0 100%
-  );
-}
-
-.wave-decoration::before {
-  content: '';
-  position: absolute;
-  bottom: 6px;
-  left: 0;
-  right: 0;
-  height: 35px;
-  background: linear-gradient(135deg, #e8f4f5 0%, #f0f9ff 50%, #e8f4f5 100%);
-  clip-path: polygon(
-    0 50%, 
-    8% 62%, 
-    16% 52%, 
-    24% 65%, 
-    32% 55%, 
-    40% 68%, 
-    48% 58%, 
-    56% 65%, 
-    64% 53%, 
-    72% 63%, 
-    80% 55%, 
-    88% 62%, 
-    96% 53%, 
-    100% 58%, 
-    100% 100%, 
-    0 100%
-  );
-  opacity: 0.7;
-}
-
-/* ============================================
-   LOGIN TABS - MODERN FLOATING BUTTONS
-   ============================================ */
-.login-tabs {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0 28px;
-  margin-top: -28px;
-  position: relative;
-  z-index: 10;
-}
-
-.login-tabs-secondary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  width: 100%;
-}
-
-.login-tab-secondary {
-  padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
-  border: 2px solid #e8f4f5;
-  border-radius: 14px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  position: relative;
-  overflow: hidden;
-}
-
-.login-tab-secondary::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-}
-
-.login-tab-secondary:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-.login-tab-secondary i {
-  font-size: 16px;
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.login-tab-secondary:hover i {
-  transform: scale(1.2) rotate(-5deg);
-}
-
-.login-tab-secondary span {
-  position: relative;
-  z-index: 1;
-}
-
-.login-tab-publik {
-  color: #0891b2;
-  border-color: #cffafe;
-  background: linear-gradient(135deg, #ecfeff 0%, #f0f9ff 100%);
-}
-
-.login-tab-publik:hover {
-  border-color: #0891b2;
-  color: #0e7490;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(8, 145, 178, 0.25);
-}
-
-.login-tab-pengaduan {
-  color: #dc2626;
-  border-color: #fee2e2;
-  background: linear-gradient(135deg, #fef2f2 0%, #fff7ed 100%);
-}
-
-.login-tab-pengaduan:hover {
-  border-color: #dc2626;
-  color: #b91c1c;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(220, 38, 38, 0.25);
-}
-
-/* ============================================
-   FORM SECTION - MODERN INPUTS
-   ============================================ */
-.login-body {
-  padding: 28px 28px 32px;
-  background: white;
-}
-
-.form-group {
-  margin-bottom: 22px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  color: #374151;
-  margin-bottom: 8px;
-  letter-spacing: 0.3px;
-}
-
-.form-group label span {
-  color: #e74c3c;
-  font-weight: 800;
-}
-
-.form-group .input-wrapper {
-  position: relative;
-}
-
-.form-group .input-wrapper i {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-  font-size: 16px;
-  transition: color 0.3s ease;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 15px 16px 15px 48px;
-  border: 2px solid #e5e7eb;
-  border-radius: 14px;
-  font-size: 14.5px;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: #f9fafb;
-  color: #1f2937;
-}
-
-.form-group input::placeholder {
-  color: #9ca3af;
-  font-weight: 400;
-}
-
-.form-group input:hover {
-  border-color: #d1d5db;
-  background: #ffffff;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #1f6366;
-  background: white;
-  box-shadow: 
-    0 0 0 4px rgba(31, 99, 102, 0.1),
-    0 4px 12px rgba(31, 99, 102, 0.15);
-  transform: translateY(-1px);
-}
-
-.form-group input:focus + i,
-.form-group .input-wrapper:focus-within i {
-  color: #1f6366;
-}
-
-/* ============================================
-   LOGIN BUTTON - ENHANCED
-   ============================================ */
-.btn-login {
-  width: 100%;
-  padding: 17px;
-  background: linear-gradient(135deg, #1f6366 0%, #2a8a8e 50%, #34a5a9 100%);
-  color: white;
-  border: none;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 8px;
-  letter-spacing: 0.5px;
-  box-shadow: 
-    0 8px 24px rgba(31, 99, 102, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-login::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-  transition: left 0.6s ease;
-}
-
-.btn-login:hover::before {
-  left: 100%;
-}
-
-.btn-login:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 12px 32px rgba(31, 99, 102, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-}
-
-.btn-login:active {
-  transform: translateY(0);
-}
-
-.btn-login:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* ============================================
-   DIVIDER - MODERN
-   ============================================ */
-.login-divider {
-  display: flex;
-  align-items: center;
-  margin: 28px 0;
-  gap: 16px;
-}
-
-.login-divider::before,
-.login-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #d1d5db, transparent);
-}
-
-.login-divider span {
-  font-size: 12px;
-  color: #9ca3af;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* ============================================
-   SOCIAL LINKS - COMPACT & MODERN
-   ============================================ */
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 20px;
-}
-
-.social-links a {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.social-links a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.social-links a:hover::before {
-  opacity: 1;
-}
-
-.social-links a.facebook { background: linear-gradient(135deg, #1877F2, #0d5bc6); }
-.social-links a.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.social-links a.tiktok { background: linear-gradient(135deg, #000000, #25F4EE); }
-.social-links a.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
-
-.social-links a:hover {
-  transform: translateY(-4px) scale(1.1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-
-/* ============================================
-   LOGIN FOOTER - ENHANCED
-   ============================================ */
-.login-footer {
-  text-align: center;
-  padding: 24px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.login-footer p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  text-transform: uppercase;
-}
-
-/* ============================================
-   RESPONSIVE ADJUSTMENTS
-   ============================================ */
-@media (max-width: 480px) {
-  .login-card {
-    border-radius: 24px;
-    margin: 0 12px;
-  }
-  
-  .login-header {
-    padding: 38px 20px 48px;
-  }
-  
-  .login-header h1 {
-    font-size: 26px;
-  }
-  
-  .login-header p {
-    font-size: 12.5px;
-  }
-  
-  .login-logo .logo-icon {
-    width: 52px;
-    height: 52px;
-  }
-  
-  .login-logo .logo-icon img {
-    width: 38px;
-    height: 38px;
-  }
-  
-  .login-body {
-    padding: 24px 20px 28px;
-  }
-  
-  .login-tabs {
-    padding: 0 20px;
-  }
-  
-  .login-tab-secondary {
-    padding: 12px 12px;
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 360px) {
-  .login-header h1 {
-    font-size: 24px;
-  }
-  
-  .login-logo {
-    gap: 10px;
-  }
-  
-  .login-logo .logo-icon {
-    width: 48px;
-    height: 48px;
-  }
-  
-  .login-logo .logo-icon img {
-    width: 34px;
-    height: 34px;
-  }
-}
-/* Card entrance animation */
-@keyframes cardEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.login-card {
-  animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* Staggered animation untuk elements di dalam card */
-.login-logo {
-  animation: fadeInDown 0.6s ease 0.2s both;
-}
-
-.login-header h1 {
-  animation: fadeInUp 0.6s ease 0.3s both;
-}
-
-.login-header p {
-  animation: fadeInUp 0.6s ease 0.4s both;
-}
-
-.login-tabs {
-  animation: fadeInUp 0.6s ease 0.5s both;
-}
-
-.login-body {
-  animation: fadeInUp 0.6s ease 0.6s both;
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-    /* Dashboard Publik - Warna Biru-Cyan (transparansi data) */
     .login-tab-publik {
       color: #0891b2;
       border-color: #cffafe;
@@ -750,12 +189,10 @@
 
     .login-tab-publik:hover {
       border-color: #0891b2;
-      color: #0e7490;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(8, 145, 178, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(8, 145, 178, 0.25);
     }
 
-    /* Pengaduan - Warna Orange-Red (aksi) */
     .login-tab-pengaduan {
       color: #dc2626;
       border-color: #fee2e2;
@@ -764,66 +201,24 @@
 
     .login-tab-pengaduan:hover {
       border-color: #dc2626;
-      color: #b91c1c;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(220, 38, 38, 0.25);
     }
 
-    /* Responsive Mobile */
-    @media (max-width: 480px) {
-      .login-tabs {
-        padding: 0 20px;
-        gap: 8px;
-        margin-top: -25px;
-      }
-      
-      .login-tab-primary {
-        padding: 14px 20px;
-        font-size: 14px;
-        border-radius: 12px;
-      }
-      
-      .login-tab-primary i {
-        font-size: 16px;
-      }
-      
-      .login-tabs-secondary {
-        gap: 8px;
-      }
-      
-      .login-tab-secondary {
-        padding: 12px 10px;
-        font-size: 12px;
-        border-radius: 10px;
-      }
-      
-      .login-tab-secondary i {
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .login-tab-secondary {
-        font-size: 11px;
-        padding: 10px 8px;
-      }
-    }
-
-    /* FORM SECTION */
     .login-body {
-      padding: 30px;
+      padding: 28px 28px 32px;
       background: white;
     }
 
     .form-group { 
-      margin-bottom: 20px; 
+      margin-bottom: 22px; 
     }
     
     .form-group label { 
       display: block; 
       font-size: 13px; 
-      font-weight: 600; 
-      color: #444; 
+      font-weight: 700; 
+      color: #374151; 
       margin-bottom: 8px;
     }
     
@@ -837,22 +232,22 @@
     
     .form-group .input-wrapper i { 
       position: absolute; 
-      left: 15px; 
+      left: 16px; 
       top: 50%; 
       transform: translateY(-50%); 
-      color: #999; 
+      color: #9ca3af; 
       font-size: 16px; 
     }
     
     .form-group input {
       width: 100%; 
-      padding: 14px 15px 14px 45px;
-      border: 2px solid #e0e0e0; 
-      border-radius: 12px;
-      font-size: 15px; 
+      padding: 15px 16px 15px 48px;
+      border: 2px solid #e5e7eb; 
+      border-radius: 14px;
+      font-size: 14.5px; 
       font-family: 'Inter', sans-serif;
       transition: all 0.3s ease; 
-      background: #f8f9fa;
+      background: #f9fafb;
     }
     
     .form-group input:focus { 
@@ -864,37 +259,34 @@
     
     .btn-login {
       width: 100%; 
-      padding: 16px;
-      background: linear-gradient(135deg, #1f6366, #2a8a8e);
+      padding: 17px;
+      background: linear-gradient(135deg, #1f6366 0%, #2a8a8e 50%, #34a5a9 100%);
       color: white; 
       border: none; 
-      border-radius: 12px;
+      border-radius: 14px;
       font-size: 16px; 
       font-weight: 700; 
-      font-family: 'Inter', sans-serif;
       cursor: pointer; 
       transition: all 0.3s ease; 
-      margin-top: 10px; 
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 15px rgba(31, 99, 102, 0.3);
+      margin-top: 8px;
+      box-shadow: 0 8px 24px rgba(31, 99, 102, 0.35);
     }
     
     .btn-login:hover { 
       transform: translateY(-2px); 
-      box-shadow: 0 8px 25px rgba(31, 99, 102, 0.4); 
+      box-shadow: 0 12px 32px rgba(31, 99, 102, 0.45); 
     }
     
     .btn-login:disabled { 
       opacity: 0.7; 
       cursor: not-allowed; 
-      transform: none; 
     }
     
     .login-divider { 
       display: flex; 
       align-items: center; 
-      margin: 25px 0; 
-      gap: 15px; 
+      margin: 28px 0; 
+      gap: 16px; 
     }
     
     .login-divider::before, 
@@ -902,82 +294,61 @@
       content: ''; 
       flex: 1; 
       height: 1px; 
-      background: #ddd; 
+      background: linear-gradient(90deg, transparent, #d1d5db, transparent); 
     }
     
     .login-divider span { 
       font-size: 12px; 
-      color: #999; 
-      font-weight: 500; 
+      color: #9ca3af; 
+      font-weight: 600; 
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    .btn-pengaduan {
-      width: 100%; 
-      padding: 14px;
-      background: linear-gradient(135deg, #e74c3c, #c0392b);
-      color: white; 
-      border: none; 
-      border-radius: 12px;
-      font-size: 15px; 
-      font-weight: 700; 
-      font-family: 'Inter', sans-serif;
-      cursor: pointer; 
-      transition: all 0.3s ease;
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      gap: 10px;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-    }
-    
-    .btn-pengaduan:hover { 
-      transform: translateY(-2px); 
-      box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4); 
-    }
-    
     .social-links { 
       display: flex; 
       justify-content: center; 
-      gap: 12px; 
-      margin-top: 25px; 
+      gap: 14px; 
+      margin-top: 20px; 
     }
     
     .social-links a {
-      width: 45px; 
-      height: 45px; 
+      width: 42px; 
+      height: 42px; 
       border-radius: 12px;
       display: flex; 
       align-items: center; 
       justify-content: center;
       text-decoration: none; 
       color: white; 
-      font-size: 20px; 
+      font-size: 18px; 
       transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     
-    .social-links a.facebook { background: #1877F2; }
+    .social-links a.facebook { background: linear-gradient(135deg, #1877F2, #0d5bc6); }
     .social-links a.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .social-links a.tiktok { background: #000000; }
-    .social-links a.whatsapp { background: #25D366; }
+    .social-links a.tiktok { background: linear-gradient(135deg, #000000, #25F4EE); }
+    .social-links a.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
     
     .social-links a:hover { 
-      transform: translateY(-3px) scale(1.1); 
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+      transform: translateY(-4px) scale(1.1); 
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25); 
     }
     
     .login-footer { 
       text-align: center; 
-      padding: 20px; 
+      padding: 24px 20px; 
       position: relative; 
       z-index: 2; 
     }
     
     .login-footer p { 
-      color: rgba(255, 255, 255, 0.8); 
+      color: rgba(255, 255, 255, 0.9); 
       font-size: 13px; 
-      font-weight: 600; 
-      letter-spacing: 2px; 
+      font-weight: 700; 
+      letter-spacing: 3px;
+      text-transform: uppercase;
     }
     
     .error-message {
@@ -986,19 +357,11 @@
       padding: 12px 16px; 
       border-radius: 10px;
       font-size: 13px; 
-      font-weight: 500; 
       margin-bottom: 15px;
       display: none; 
       align-items: center; 
       gap: 8px; 
       border: 1px solid #f5c6cb;
-      animation: shake 0.5s ease;
-    }
-    
-    @keyframes shake { 
-      0%, 100% { transform: translateX(0); } 
-      25% { transform: translateX(-5px); } 
-      75% { transform: translateX(5px); } 
     }
     
     .error-message.show { 
@@ -1009,10 +372,7 @@
     .dashboard-page { 
       display: none; 
       min-height: 100vh; 
-      background: 
-        radial-gradient(ellipse at top, #edf5f5 0%, #f4f7f8 48%, #f4f7f8 100%),
-        url('background.png') center / cover no-repeat;
-      background-attachment: fixed;
+      background: radial-gradient(ellipse at top, #edf5f5 0%, #f4f7f8 48%, #f4f7f8 100%);
     }
     
     .navbar {
@@ -1045,10 +405,6 @@
       justify-content: center;
     }
     
-    .navbar-brand .brand-icon i { 
-      font-size: 20px; 
-    }
-    
     .navbar-brand h2 { 
       font-size: 18px; 
       font-weight: 700; 
@@ -1057,7 +413,6 @@
     .navbar-brand span { 
       font-size: 12px; 
       opacity: 0.8; 
-      font-weight: 400; 
     }
     
     .navbar-right { 
@@ -1066,76 +421,36 @@
       gap: 12px; 
     }
     
-    .btn-database-nav {
+    .btn-database-nav, .btn-refresh, .btn-logout {
       padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-database-nav {
       background: rgba(255,255,255,0.15);
       color: white;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
     }
     
-    .btn-database-nav:hover {
-      background: rgba(255,255,255,0.25);
-      transform: translateY(-1px);
-    }
-
     .btn-refresh {
-      padding: 8px 16px;
       background: rgba(39, 174, 96, 0.15);
       color: #27ae60;
-      border: 1px solid rgba(39, 174, 96, 0.3);
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     
-    .btn-refresh:hover { 
-      background: rgba(39, 174, 96, 0.25); 
-      transform: translateY(-1px); 
-    }
-    
-    .btn-refresh i { 
-      transition: transform 0.5s ease; 
-    }
-    
-    .btn-refresh:hover i { 
-      transform: rotate(180deg); 
-    }
-
     .btn-logout {
-      padding: 8px 20px;
       background: rgba(231, 76, 60, 0.2);
       color: #ffcccc;
-      border: 1px solid rgba(231, 76, 60, 0.4);
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     
-    .btn-logout:hover { 
-      background: rgba(231, 76, 60, 0.4);
-      color: white;
+    .btn-database-nav:hover, .btn-refresh:hover, .btn-logout:hover {
+      transform: translateY(-1px);
     }
 
     .dashboard-content { 
@@ -1171,10 +486,6 @@
       color: #666; 
       margin-top: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    
-    .last-update i { 
-      color: #1f6366; 
     }
     
     .stats-row { 
@@ -1213,7 +524,6 @@
     .stat-card .stat-icon.green { background: #e8f8f0; color: #27ae60; }
     .stat-card .stat-icon.orange { background: #fef5e7; color: #f39c12; }
     .stat-card .stat-icon.red { background: #fde8e8; color: #e74c3c; }
-    .stat-card .stat-icon.purple { background: #f0e6ff; color: #8e44ad; }
     
     .stat-card .stat-value { 
       font-size: 28px; 
@@ -1226,7 +536,6 @@
       font-size: 12px; 
       color: #888; 
       margin-top: 6px; 
-      font-weight: 500; 
     }
     
     .section-card {
@@ -1478,15 +787,6 @@
       font-size: 14px; 
       font-weight: 700; 
       letter-spacing: 3px; 
-      opacity: 0.9; 
-    }
-    
-    .dashboard-footer .footer-sub { 
-      font-size: 11px; 
-      font-weight: 400; 
-      letter-spacing: 1px; 
-      opacity: 0.6; 
-      margin-top: 5px; 
     }
     
     .loading-overlay {
@@ -1524,34 +824,8 @@
     .loading-overlay p { 
       color: white; 
       font-size: 14px; 
-      font-weight: 500; 
     }
-    
-    .fade-in { 
-      animation: fadeIn 0.5s ease; 
-    }
-    
-    @keyframes fadeIn { 
-      from { opacity: 0; } 
-      to { opacity: 1; } 
-    }
-    
-    .slide-up { 
-      animation: slideUpAnim 0.5s ease forwards; 
-      opacity: 0; 
-    }
-    
-    @keyframes slideUpAnim { 
-      from { opacity: 0; transform: translateY(20px); } 
-      to { opacity: 1; transform: translateY(0); } 
-    }
-    
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
 
-    /* MODAL TENTANG APLIKASI */
     .modal-overlay {
       position: fixed; 
       top: 0; 
@@ -1569,7 +843,6 @@
     
     .modal-overlay.show { 
       display: flex; 
-      animation: fadeIn 0.3s ease; 
     }
     
     .modal-content {
@@ -1578,7 +851,6 @@
       width: 100%; 
       max-width: 500px;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-      animation: slideUp 0.3s ease; 
       overflow: hidden;
     }
     
@@ -1594,10 +866,6 @@
     .modal-header h3 { 
       font-size: 18px; 
       font-weight: 700; 
-      margin: 0; 
-      display: flex; 
-      align-items: center; 
-      gap: 10px; 
     }
     
     .modal-close {
@@ -1608,75 +876,12 @@
       height: 32px; 
       border-radius: 50%; 
       cursor: pointer;
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      transition: 0.2s;
-    }
-    
-    .modal-close:hover { 
-      background: rgba(255,255,255,0.4); 
     }
     
     .modal-body { 
       padding: 25px; 
     }
-    
-    .about-info { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 24px; 
-    }
-    
-    .about-section-title {
-      font-size: 12px; 
-      font-weight: 700; 
-      color: #1f6366;
-      text-transform: uppercase; 
-      letter-spacing: 1px;
-      border-bottom: 2px solid #e8f4f5; 
-      padding-bottom: 6px; 
-      margin-bottom: 12px;
-    }
-    
-    .about-person strong { 
-      display: block; 
-      font-size: 16px; 
-      color: #333; 
-      margin-bottom: 4px; 
-    }
-    
-    .about-person span { 
-      display: block; 
-      font-size: 13px; 
-      color: #666; 
-      line-height: 1.6; 
-    }
-    
-    .about-row { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      padding: 8px 0; 
-      border-bottom: 1px solid #f0f0f0; 
-    }
-    
-    .about-row:last-child { 
-      border-bottom: none; 
-    }
-    
-    .about-row span { 
-      font-size: 14px; 
-      color: #666; 
-    }
-    
-    .about-row strong { 
-      font-size: 14px; 
-      color: #1f6366; 
-      font-weight: 700; 
-    }
 
-    /* INDIKATOR AUTO REFRESH */
     .refresh-indicator {
       position: fixed;
       top: 75px;
@@ -1692,104 +897,22 @@
       align-items: center;
       gap: 6px;
       z-index: 99;
-      border: 1px solid #e8f4f5;
     }
     
     .refresh-indicator.show { 
       display: flex; 
-      animation: fadeIn 0.3s ease; 
     }
     
     .refresh-indicator i { 
       color: #27ae60; 
       animation: spin 1s linear infinite; 
     }
-    
-    .refresh-indicator.success i { 
-      color: #27ae60; 
-      animation: none; 
-    }
 
     @media (max-width: 768px) {
-      .login-card { 
-        border-radius: 20px; 
-      }
-      
-      .login-header {
-        padding: 40px 20px 50px;
-      }
-      
-      .login-header h1 {
-        font-size: 26px;
-      }
-      
-      .login-body { 
-        padding: 25px 20px; 
-      }
-      
-      .login-tabs {
-        padding: 0 20px;
-      }
-      
-      .navbar { 
-        padding: 0 15px; 
-      }
-      
-      .navbar-brand h2 { 
-        font-size: 15px; 
-      }
-      
-      .dashboard-content { 
-        padding: 20px 15px; 
-      }
-      
-      .dashboard-header h1 { 
-        font-size: 22px; 
-      }
-      
-      .stats-row { 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 12px; 
-      }
-      
-      .stat-card { 
-        padding: 18px; 
-      }
-      
-      .stat-card .stat-value { 
-        font-size: 22px; 
-      }
-      
-      .chart-row { 
-        grid-template-columns: 1fr; 
-      }
-      
-      .donut-container { 
-        flex-direction: column; 
-      }
-      
-      .section-body { 
-        padding: 15px; 
-      }
-      
-      .btn-database-nav span, 
-      .btn-refresh span { 
-        display: none; 
-      }
-      
-      .btn-refresh { 
-        padding: 8px 12px; 
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .login-header h1 {
-        font-size: 24px;
-      }
-      
-      .stats-row { 
-        grid-template-columns: 1fr 1fr; 
-      }
+      .chart-row { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .navbar { padding: 0 15px; }
+      .btn-database-nav span, .btn-refresh span { display: none; }
     }
   </style>
 </head>
@@ -1801,7 +924,7 @@
     <p>Memuat data dashboard...</p>
   </div>
 
-  <!-- INDIKATOR AUTO REFRESH -->
+  <!-- REFRESH INDICATOR -->
   <div class="refresh-indicator" id="refreshIndicator">
     <i class="fas fa-sync-alt"></i>
     <span id="refreshText">Memperbarui data...</span>
@@ -1811,38 +934,18 @@
   <div class="login-page" id="loginPage">
     <div class="login-container">
       <div class="login-card">
-        <!-- HEADER DENGAN BACKGROUND IMAGE & LOGO DI DALAMNYA -->
         <div class="login-header">
-          <!-- LOGO SECTION - DI DALAM HEADER -->
           <div class="login-logo">
-            <!-- Logo 1: DPUTR -->
-            <div class="logo-icon">
-              <img src="logo.png" alt="Logo DPUTR">
-            </div>
-            
-            <!-- Logo 2: Bandung Lebih Bedas (TENGAH) -->
-            <div class="logo-icon">
-              <img src="Logo_Bandung_Lebih_Bedas-01.png" alt="Logo Bandung Lebih Bedas">
-            </div>
-            
-            <!-- Logo 3: UPTD Sarpras Cileunyi -->
-            <div class="logo-icon">
-              <img src="Logo_UPTD_Sarpras_Cileunyi_transparan.png" alt="Logo UPTD Sarpras Cileunyi">
-            </div>
+            <div class="logo-icon"><img src="logo.png" alt="Logo DPUTR"></div>
+            <div class="logo-icon"><img src="Logo_Bandung_Lebih_Bedas-01.png" alt="Bandung Lebih Bedas"></div>
+            <div class="logo-icon"><img src="Logo_UPTD_Sarpras_Cileunyi_transparan.png" alt="UPTD Sarpras"></div>
           </div>
-          
           <h1>PANALIK-NYI</h1>
           <p>Pemetaan dan Analisis Inventarisasi<br>Kondisi Jalan Cileunyi</p>
-          
           <div class="wave-decoration"></div>
         </div>
 
-        <!-- TABS: 3 Button Layout -->
         <div class="login-tabs">
-          <!-- Baris 1: Login Dashboard (Full Width - Primary) -->
-        
-          
-          <!-- Baris 2: Dashboard Publik + Pengaduan (2 Kolom) -->
           <div class="login-tabs-secondary">
             <a href="#" class="login-tab-secondary login-tab-publik" id="tabDashboardPublik" target="_blank">
               <i class="fas fa-chart-bar"></i> Dashboard Publik
@@ -1853,7 +956,6 @@
           </div>
         </div>
 
-        <!-- FORM BODY -->
         <div class="login-body">
           <div class="error-message" id="errorMessage">
             <i class="fas fa-exclamation-circle"></i>
@@ -1882,63 +984,240 @@
             </button>
           </form>
 
-          <div class="login-divider">
-            <span>Hubungi Kami</span>
-          </div>
+          <div class="login-divider"><span>Hubungi Kami</span></div>
 
-          <!-- SOCIAL LINKS DENGAN WHATSAPP -->
           <div class="social-links">
-            <a href="https://www.facebook.com/Uptd-Sapras-Cileunyi" 
-               class="facebook" 
-               id="linkFacebook" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               title="Facebook UPTD Sapras Cileunyi">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-
-            <a href="https://www.instagram.com/uptd.sapras.cileunyi/" 
-               class="instagram" 
-               id="linkInstagram" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               title="Instagram UPTD Sapras Cileunyi">
-              <i class="fab fa-instagram"></i>
-            </a>
-
-            <a href="https://www.tiktok.com/@uptd.sapras.cileunyi" 
-               class="tiktok" 
-               id="linkTiktok" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               title="TikTok UPTD Sapras Cileunyi">
-              <i class="fab fa-tiktok"></i>
-            </a>
-
-            <!-- TAMBAHAN: Link WhatsApp -->
-            <a href="https://wa.me/6281395465524" 
-               class="whatsapp" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               title="Hubungi via WhatsApp">
-              <i class="fab fa-whatsapp"></i>
-            </a>
+            <a href="https://www.facebook.com/Uptd-Sapras-Cileunyi" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/uptd.sapras.cileunyi/" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@uptd.sapras.cileunyi" class="tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/6281395465524" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
       </div>
     </div>
     
-    <div class="login-footer">
+    <div class="login-footer"><p>UPTD SARPRAS CILEUNYI</p></div>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div class="dashboard-page" id="dashboardPage" style="display:none;">
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <div class="brand-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h2>PANALIK-NYI</h2>
+          <span>Dashboard Admin</span>
+        </div>
+      </div>
+      <div class="navbar-right">
+        <button class="btn-database-nav" onclick="showAbout()"><i class="fas fa-info-circle"></i><span>Tentang</span></button>
+        <button class="btn-refresh" onclick="manualRefresh()"><i class="fas fa-sync-alt"></i><span>Refresh</span></button>
+        <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></button>
+      </div>
+    </nav>
+
+    <div class="dashboard-content">
+      <div class="dashboard-header">
+        <h1>Dashboard Rekap Data</h1>
+        <p>Pemetaan dan Analisis Inventarisasi Kondisi Jalan Cileunyi</p>
+        <div class="last-update">
+          <i class="fas fa-clock"></i>
+          <span id="lastUpdate">Memuat data...</span>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fas fa-road"></i></div>
+          <div class="stat-value" id="statTotalRuas">0</div>
+          <div class="stat-label">Total Ruas Jalan</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+          <div class="stat-value" id="statKondisiBaik">0</div>
+          <div class="stat-label">Kondisi Baik</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fas fa-clipboard-list"></i></div>
+          <div class="stat-value" id="statTotalUsulan">0</div>
+          <div class="stat-label">Total Usulan</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="stat-value" id="statTotalPengaduan">0</div>
+          <div class="stat-label">Total Pengaduan</div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-icon survei"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>Survei Kondisi Jalan</h3>
+        </div>
+        <div class="section-body">
+          <div class="data-row">
+            <div class="data-label"><span class="dot default"></span>Total Ruas Jalan</div>
+            <div class="data-value" id="valTotalRuas">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot baik"></span>Kondisi Baik</div>
+            <div class="data-value" id="valKondisiBaik">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot ringan"></span>Rusak Ringan</div>
+            <div class="data-value" id="valKondisiRingan">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot sedang"></span>Rusak Sedang</div>
+            <div class="data-value" id="valKondisiSedang">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot berat"></span>Rusak Berat</div>
+            <div class="data-value" id="valKondisiBerat">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><i class="fas fa-ruler-horizontal" style="color:#1f6366;"></i>Total Panjang Jalan</div>
+            <div class="data-value highlight" id="valTotalPanjang">0 m</div>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Distribusi Kondisi Jalan</span>
+              <span id="progressPercent">100%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="segment baik" id="progBaik" style="width:0%"></div>
+              <div class="segment ringan" id="progRingan" style="width:0%"></div>
+              <div class="segment sedang" id="progSedang" style="width:0%"></div>
+              <div class="segment berat" id="progBerat" style="width:0%"></div>
+            </div>
+            <div class="progress-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#27ae60;"></div><span>Baik</span></div>
+              <div class="legend-item"><div class="legend-dot" style="background:#f39c12;"></div><span>Rusak Ringan</span></div>
+              <div class="legend-item"><div class="legend-dot" style="background:#e67e22;"></div><span>Rusak Sedang</span></div>
+              <div class="legend-item"><div class="legend-dot" style="background:#e74c3c;"></div><span>Rusak Berat</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-card">
+          <h4><i class="fas fa-chart-pie"></i> Distribusi Kondisi Jalan</h4>
+          <div class="donut-container">
+            <div class="donut-chart">
+              <svg width="150" height="150">
+                <circle cx="75" cy="75" r="60" fill="none" stroke="#f0f0f0" stroke-width="12"></circle>
+                <circle id="donutBaik" cx="75" cy="75" r="60" fill="none" stroke="#27ae60" stroke-width="12" stroke-dasharray="0 377"></circle>
+                <circle id="donutRingan" cx="75" cy="75" r="60" fill="none" stroke="#f39c12" stroke-width="12" stroke-dasharray="0 377"></circle>
+                <circle id="donutSedang" cx="75" cy="75" r="60" fill="none" stroke="#e67e22" stroke-width="12" stroke-dasharray="0 377"></circle>
+                <circle id="donutBerat" cx="75" cy="75" r="60" fill="none" stroke="#e74c3c" stroke-width="12" stroke-dasharray="0 377"></circle>
+              </svg>
+              <div class="donut-center">
+                <div class="value" id="donutTotal">0</div>
+                <div class="label">Total</div>
+              </div>
+            </div>
+            <div class="chart-legend" id="kondisiLegend"></div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h4><i class="fas fa-chart-pie"></i> Status Pengaduan</h4>
+          <div class="donut-container">
+            <div class="donut-chart">
+              <svg width="150" height="150">
+                <circle cx="75" cy="75" r="60" fill="none" stroke="#f0f0f0" stroke-width="12"></circle>
+                <circle id="donutValid" cx="75" cy="75" r="60" fill="none" stroke="#27ae60" stroke-width="12" stroke-dasharray="0 377"></circle>
+                <circle id="donutTidakValid" cx="75" cy="75" r="60" fill="none" stroke="#e74c3c" stroke-width="12" stroke-dasharray="0 377"></circle>
+              </svg>
+              <div class="donut-center">
+                <div class="value" id="donutPengaduanTotal">0</div>
+                <div class="label">Total</div>
+              </div>
+            </div>
+            <div class="chart-legend" id="pengaduanLegend"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-icon pemeliharaan"><i class="fas fa-tools"></i></div>
+          <h3>Data Pemeliharaan Jalan</h3>
+        </div>
+        <div class="section-body">
+          <div class="data-row">
+            <div class="data-label"><span class="dot default"></span>Total Usulan</div>
+            <div class="data-value" id="valTotalUsulanPem">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot disetujui"></span>Usulan Disetujui</div>
+            <div class="data-value" id="valUsulanDisetujui">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot ditolak"></span>Usulan Ditolak</div>
+            <div class="data-value" id="valUsulanDitolak">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot selesai"></span>Pelaksanaan Selesai</div>
+            <div class="data-value" id="valPelaksanaanSelesai">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot proses"></span>Pelaksanaan Proses</div>
+            <div class="data-value" id="valPelaksanaanProses">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><i class="fas fa-hourglass-start" style="color:#1f6366;"></i>Pelaksanaan Belum Mulai</div>
+            <div class="data-value" id="valPelaksanaanBelum">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><i class="fas fa-money-bill-wave" style="color:#27ae60;"></i>Total RAB</div>
+            <div class="data-value highlight" id="valTotalRAB">Rp 0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-icon pengaduan"><i class="fas fa-bullhorn"></i></div>
+          <h3>Data Pengaduan Masyarakat</h3>
+        </div>
+        <div class="section-body">
+          <div class="data-row">
+            <div class="data-label"><span class="dot default"></span>Total Pengaduan Masuk</div>
+            <div class="data-value" id="valTotalPengaduan">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot valid"></span>Pengaduan Valid</div>
+            <div class="data-value" id="valPengaduanValid">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot tidak-valid"></span>Pengaduan Tidak Valid</div>
+            <div class="data-value" id="valPengaduanTidakValid">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot selesai"></span>Penanganan Selesai</div>
+            <div class="data-value" id="valPenangananSelesai">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot proses"></span>Penanganan Proses</div>
+            <div class="data-value" id="valPenangananProses">0</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label"><span class="dot ditolak"></span>Penanganan Ditolak</div>
+            <div class="data-value" id="valPenangananDitolak">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-footer">
       <p>UPTD SARPRAS CILEUNYI</p>
     </div>
   </div>
 
-  <!-- DASHBOARD PAGE (Sama seperti sebelumnya) -->
-  <div class="dashboard-page" id="dashboardPage">
-    <!-- (Kode dashboard tetap sama) -->
-  </div>
-
-  <!-- MODAL TENTANG APLIKASI -->
+  <!-- MODAL TENTANG -->
   <div class="modal-overlay" id="aboutModal" onclick="if(event.target === this) closeAbout()">
     <div class="modal-content">
       <div class="modal-header">
@@ -1946,54 +1225,33 @@
         <button class="modal-close" onclick="closeAbout()"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
-        <div class="about-info">
-          <div>
-            <div class="about-section-title">Penggagas Ide</div>
-            <div class="about-person">
-              <strong id="aboutInitiator">Ir. Dewi Phrameswari, S.T., M.T.</strong>
-              <span id="aboutInitiatorPos">Kepala Sub Bagian Tata Usaha</span>
-              <span id="aboutInitiatorUnit">UPTD Pengelolaan Sarana Prasarana Wilayah Cileunyi</span>
-              <span id="aboutInitiatorInst">Dinas Pekerjaan Umum dan Tata Ruang Kabupaten Bandung</span>
-            </div>
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px;font-weight:700;color:#1f6366;text-transform:uppercase;border-bottom:2px solid #e8f4f5;padding-bottom:6px;margin-bottom:12px;">Penggagas Ide</div>
+          <div style="font-size:16px;font-weight:700;color:#333;">Ir. Dewi Phrameswari, S.T., M.T.</div>
+          <div style="font-size:13px;color:#666;">Kepala Sub Bagian Tata Usaha</div>
+          <div style="font-size:13px;color:#666;">UPTD Pengelolaan Sarana Prasarana Wilayah Cileunyi</div>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px;font-weight:700;color:#1f6366;text-transform:uppercase;border-bottom:2px solid #e8f4f5;padding-bottom:6px;margin-bottom:12px;">Pengembang</div>
+          <div style="font-size:16px;font-weight:700;color:#333;">Roni Romansa</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#1f6366;text-transform:uppercase;border-bottom:2px solid #e8f4f5;padding-bottom:6px;margin-bottom:12px;">Informasi</div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+            <span style="font-size:14px;color:#666;">Versi Aplikasi</span>
+            <strong style="font-size:14px;color:#1f6366;">1.0.0</strong>
           </div>
-          <div>
-            <div class="about-section-title">Pengembang</div>
-            <div class="about-person">
-              <strong id="aboutDeveloper">Roni Romansa</strong>
-            </div>
-          </div>
-          <div>
-            <div class="about-section-title">Informasi Aplikasi</div>
-            <div class="about-row">
-              <span>Versi Aplikasi</span>
-              <strong id="aboutVersion">1.0.0</strong>
-            </div>
-            <div class="about-row">
-              <span>Tahun Pengembangan</span>
-              <strong id="aboutYear">2026</strong>
-            </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;">
+            <span style="font-size:14px;color:#666;">Tahun</span>
+            <strong style="font-size:14px;color:#1f6366;">2026</strong>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT (Sama seperti sebelumnya) -->
   <script>
-    const APP_INFO = {
-      name: 'PANALIK-NYI',
-      subtitle: 'Dashboard Rekap Data',
-      initiator: 'Ir. Dewi Phrameswari, S.T., M.T.',
-      initiatorPosition: 'Kepala Sub Bagian Tata Usaha',
-      initiatorUnit: 'UPTD Pengelolaan Sarana Prasarana Wilayah Cileunyi',
-      initiatorInstitution: 'Dinas Pekerjaan Umum dan Tata Ruang Kabupaten Bandung',
-      developer: 'Roni Romansa',
-      version: '1.0.0',
-      year: '2026'
-    };
-
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFHRmwUYTyQkmYGBKwOa27C4af-LL7g__yLUqETue5UoDEyEVLK1qd-e1yANJ_bKMcyg/exec';
-
     const AUTO_REFRESH_INTERVAL = 60000;
     let refreshTimer = null;
     let isSessionActive = false;
@@ -2046,11 +1304,7 @@
       refreshText.textContent = text;
       indicator.classList.add('show');
       if (isSuccess) indicator.classList.add('success');
-      else indicator.classList.remove('success');
-      
-      setTimeout(() => {
-        indicator.classList.remove('show');
-      }, 2500);
+      setTimeout(() => { indicator.classList.remove('show'); }, 2500);
     }
 
     function manualRefresh() {
@@ -2063,13 +1317,6 @@
     }
 
     function showAbout() {
-      document.getElementById('aboutInitiator').textContent = APP_INFO.initiator;
-      document.getElementById('aboutInitiatorPos').textContent = APP_INFO.initiatorPosition;
-      document.getElementById('aboutInitiatorUnit').textContent = APP_INFO.initiatorUnit;
-      document.getElementById('aboutInitiatorInst').textContent = APP_INFO.initiatorInstitution;
-      document.getElementById('aboutDeveloper').textContent = APP_INFO.developer;
-      document.getElementById('aboutVersion').textContent = APP_INFO.version;
-      document.getElementById('aboutYear').textContent = APP_INFO.year;
       document.getElementById('aboutModal').classList.add('show');
     }
 
@@ -2105,7 +1352,6 @@
           errorMsg.classList.add('show');
           document.getElementById('errorText').textContent = result.message;
           document.getElementById('password').value = '';
-          document.getElementById('password').focus();
         }
       } catch (error) {
         btnLogin.disabled = false;
@@ -2135,55 +1381,26 @@
       }
       
       try {
-        const response = await fetch(`${APPS_SCRIPT_URL}?action=dashboard`, {
-          cache: 'no-store'
-        });
+        const response = await fetch(`${APPS_SCRIPT_URL}?action=dashboard`, { cache: 'no-store' });
         const data = await response.json();
         
         loading.classList.remove('show');
         
         if (data.error) {
-          if (!silent) showDashboardError(data.error);
-          if (silent) showRefreshIndicator('Gagal memperbarui data', true);
+          if (!silent) alert('Error: ' + data.error);
           return;
         }
+        
         renderDashboard(data);
         
         const now = new Date();
-        document.getElementById('lastUpdate').textContent =
-          'Terakhir diperbarui: ' + now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + 
-          ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+        document.getElementById('lastUpdate').textContent = 'Terakhir diperbarui: ' + now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
         
-        if (silent) {
-          showRefreshIndicator('✓ Data berhasil diperbarui', true);
-        }
+        if (silent) showRefreshIndicator('✓ Data berhasil diperbarui', true);
       } catch (error) {
         loading.classList.remove('show');
-        if (!silent) {
-          showDashboardError('Gagal memuat data: ' + error.message);
-        } else {
-          showRefreshIndicator('Gagal memperbarui data', true);
-        }
+        if (!silent) alert('Gagal memuat data: ' + error.message);
       }
-    }
-
-    function showDashboardError(message) {
-      const content = document.querySelector('.dashboard-content');
-      const oldError = content.querySelector('.dashboard-error-msg');
-      if (oldError) oldError.remove();
-
-      const errorDiv = document.createElement('div');
-      errorDiv.className = 'dashboard-error-msg';
-      errorDiv.style.cssText = 'background:#fde8e8;border:2px solid #e74c3c;border-radius:16px;padding:30px;text-align:center;margin:20px 0;';
-      errorDiv.innerHTML = `
-        <i class="fas fa-exclamation-triangle" style="font-size:48px;color:#e74c3c;margin-bottom:15px;"></i>
-        <h3 style="color:#c0392b;margin-bottom:10px;">Gagal Memuat Data</h3>
-        <p style="color:#666;font-size:14px;margin-bottom:20px;word-break:break-all;">${message}</p>
-        <button onclick="loadDashboardData(false)" style="padding:12px 30px;background:#e74c3c;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">
-          <i class="fas fa-redo"></i> Coba Lagi
-        </button>
-      `;
-      content.insertBefore(errorDiv, content.firstChild);
     }
 
     function formatNumber(value) {
@@ -2246,7 +1463,7 @@
         renderDonutPengaduan(pg);
       } catch (error) {
         console.error('Error renderDashboard:', error);
-        showDashboardError('Error saat memproses data: ' + error.message);
+        alert('Error saat memproses data: ' + error.message);
       }
     }
 
@@ -2267,9 +1484,9 @@
         el.setAttribute('stroke-dashoffset', `${-offset}`);
         offset += dashLength;
       });
-      document.getElementById('kondisiLegend').innerHTML = segments.map(seg => `
-        <div class="legend-item"><div class="legend-color" style="background:${seg.color};"></div>${seg.label}<span class="legend-value">${formatNumber(seg.value)}</span></div>
-      `).join('');
+      document.getElementById('kondisiLegend').innerHTML = segments.map(seg => 
+        `<div class="legend-item"><div class="legend-color" style="background:${seg.color};"></div>${seg.label}<span class="legend-value">${formatNumber(seg.value)}</span></div>`
+      ).join('');
     }
 
     function renderDonutPengaduan(pg) {
@@ -2288,9 +1505,9 @@
         el.setAttribute('stroke-dashoffset', `${-offset}`);
         offset += dashLength;
       });
-      document.getElementById('pengaduanLegend').innerHTML = segments.map(seg => `
-        <div class="legend-item"><div class="legend-color" style="background:${seg.color};"></div>${seg.label}<span class="legend-value">${formatNumber(seg.value)}</span></div>
-      `).join('');
+      document.getElementById('pengaduanLegend').innerHTML = segments.map(seg => 
+        `<div class="legend-item"><div class="legend-color" style="background:${seg.color};"></div>${seg.label}<span class="legend-value">${formatNumber(seg.value)}</span></div>`
+      ).join('');
     }
 
     async function loadLoginConfig() {
@@ -2298,25 +1515,18 @@
         const response = await fetch(`${APPS_SCRIPT_URL}?action=config`);
         const config = await response.json();
         
-        // URL Dashboard Publik - GANTI URL INI NANTI
-        const dashboardPublikUrl = 'https://uptdcileunyi.github.io/dashboard-publik/'; // <-- GANTI URL INI
+        const dashboardPublikUrl = 'https://uptdcileunyi.github.io/dashboard-publik/';
         
         if (config.formPengaduan) {
           document.getElementById('tabPengaduan').href = config.formPengaduan;
         }
-        
-        // Set URL Dashboard Publik
         document.getElementById('tabDashboardPublik').href = dashboardPublikUrl;
         
         if (config.socialMedia) {
-          const fbEl = document.getElementById('linkFacebook');
-          if (fbEl) fbEl.href = config.socialMedia.facebook || 'https://www.facebook.com/Uptd-Sapras-Cileunyi';
-          
-          const igEl = document.getElementById('linkInstagram');
-          if (igEl) igEl.href = config.socialMedia.instagram || 'https://www.instagram.com/uptd.sapras.cileunyi/';
-          
-          const ttEl = document.getElementById('linkTiktok');
-          if (ttEl) ttEl.href = config.socialMedia.tiktok || 'https://www.tiktok.com/@uptd.sapras.cileunyi';
+          const links = document.querySelectorAll('.social-links a');
+          if (config.socialMedia.facebook) links[0].href = config.socialMedia.facebook;
+          if (config.socialMedia.instagram) links[1].href = config.socialMedia.instagram;
+          if (config.socialMedia.tiktok) links[2].href = config.socialMedia.tiktok;
         }
       } catch (error) {
         console.error('Gagal load config:', error);
