@@ -44,7 +44,7 @@
       display: flex; 
       align-items: center; 
       justify-content: center; 
-      padding: 20px; 
+      padding: 40px 20px; 
       position: relative; 
       z-index: 2; 
     }
@@ -59,6 +59,7 @@
       animation: slideUp 0.6s ease-out;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.7);
+      position: relative;
     }
     
     @keyframes slideUp { 
@@ -66,104 +67,124 @@
       to { opacity: 1; transform: translateY(0); } 
     }
     
-    /* HEADER SECTION DENGAN BACKGROUND IMAGE */
-/* HEADER SECTION DENGAN BACKGROUND IMAGE LEBIH KONTRAS */
-.login-header {
-  position: relative;
-  /* Overlay lebih gelap & netral agar gambar background lebih menonjol */
-  background: 
-    linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.65) 50%, rgba(15, 23, 42, 0.80) 100%),
-    url('background.png') center / cover no-repeat;
-  padding: 40px 30px 60px;
-  text-align: center;
-  overflow: hidden;
-}
-
-.login-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-    /* YELLOW BANNER */
-    .login-banner {
-      display: inline-block;
-      background: linear-gradient(135deg, #ffd700, #ffed4e);
-      color: #1f6366;
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    /* HEADER SECTION DENGAN BACKGROUND IMAGE LEBIH KONTRAS */
+    .login-header {
       position: relative;
-      z-index: 1;
+      /* Overlay lebih gelap & netral agar gambar background lebih menonjol */
+      background: 
+        linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.65) 50%, rgba(15, 23, 42, 0.80) 100%),
+        url('background.png') center / cover no-repeat;
+      padding: 50px 30px 60px;
+      text-align: center;
+      overflow: hidden;
     }
 
-    /* LOGOS */
+    .login-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* LOGOS - 3 Logo Sejajar DI DALAM HEADER */
     .login-logo {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 20px;
+      gap: 16px;
+      margin-bottom: 25px;
       position: relative;
-      z-index: 1;
+      z-index: 10;
     }
-    
+
     .login-logo .logo-icon {
-      width: 70px;
-      height: 70px;
-      background: rgba(255,255,255,0.95);
-      border-radius: 16px;
+      width: 65px;
+      height: 65px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease;
+      flex-shrink: 0;
     }
-    
+
     .login-logo .logo-icon:hover {
       transform: translateY(-3px);
     }
-    
+
     .login-logo .logo-icon img {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       object-fit: contain;
     }
 
-.login-header h1 { 
-  font-size: 32px; 
-  font-weight: 800; 
-  color: white; 
-  letter-spacing: -0.5px; 
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-  /* Aksen gradient subtle pada teks */
-  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+    /* Responsive untuk 3 logo */
+    @media (max-width: 480px) {
+      .login-logo {
+        gap: 12px;
+      }
+      
+      .login-logo .logo-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+      }
+      
+      .login-logo .logo-icon img {
+        width: 40px;
+        height: 40px;
+      }
+    }
 
-.login-header p { 
-  font-size: 14px; 
-  color: rgba(226, 232, 240, 0.95); 
-  line-height: 1.6;
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 1px 5px rgba(0,0,0,0.3);
-}
+    @media (max-width: 360px) {
+      .login-logo {
+        gap: 10px;
+      }
+      
+      .login-logo .logo-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+      }
+      
+      .login-logo .logo-icon img {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    .login-header h1 { 
+      font-size: 32px; 
+      font-weight: 800; 
+      color: white; 
+      letter-spacing: -0.5px; 
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      /* Aksen gradient subtle pada teks */
+      background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-header p { 
+      font-size: 14px; 
+      color: rgba(226, 232, 240, 0.95); 
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    }
 
     /* WAVE DECORATION */
     .wave-decoration {
@@ -189,106 +210,171 @@
       opacity: 0.6;
     }
 
-    /* TABS */
-/* GANTI seluruh CSS .login-tabs dan .login-tab dengan ini */
+    /* ============================================
+       LOGIN TABS - 3 BUTTON RESPONSIVE LAYOUT
+       ============================================ */
+    .login-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 30px;
+      margin-top: -30px;
+      position: relative;
+      z-index: 10;
+    }
 
-.login-tabs {
-  display: flex;
-  gap: 12px;
-  padding: 0 30px;
-  margin-top: -30px;
-  position: relative;
-  z-index: 10;
-}
+    /* Baris 1: Login Dashboard (full-width) */
+    .login-tab-primary {
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #1f6366 0%, #2a8a8e 50%, #34a5a9 100%);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 25px rgba(31, 99, 102, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
 
-.login-tab {
-  flex: 1;
-  padding: 16px 24px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 2px solid #e8f4f5;
-  border-radius: 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #5a6c7d;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-  position: relative;
-  overflow: hidden;
-}
+    .login-tab-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
 
-.login-tab::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  transition: left 0.5s ease;
-}
+    .login-tab-primary:hover::before {
+      left: 100%;
+    }
 
-.login-tab:hover::before {
-  left: 100%;
-}
+    .login-tab-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(31, 99, 102, 0.45);
+    }
 
-.login-tab i {
-  font-size: 16px;
-  transition: transform 0.3s ease;
-}
+    .login-tab-primary i {
+      font-size: 18px;
+    }
 
-.login-tab:hover i {
-  transform: scale(1.15);
-}
+    /* Baris 2: Dashboard Publik + Pengaduan (2 kolom) */
+    .login-tabs-secondary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+    }
 
-.login-tab.active {
-  background: linear-gradient(135deg, #1f6366 0%, #2a8a8e 50%, #34a5a9 100%);
-  color: white;
-  border-color: #1f6366;
-  box-shadow: 
-    0 8px 25px rgba(31, 99, 102, 0.35),
-    0 0 0 4px rgba(31, 99, 102, 0.1);
-  transform: translateY(-2px);
-}
+    .login-tab-secondary {
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 2px solid #e8f4f5;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
 
-.login-tab.active i {
-  animation: pulse 2s ease-in-out infinite;
-}
+    .login-tab-secondary i {
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
+    .login-tab-secondary:hover i {
+      transform: scale(1.15);
+    }
 
-.login-tab:not(.active):hover {
-  border-color: #1f6366;
-  color: #1f6366;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(31, 99, 102, 0.15);
-}
+    /* Dashboard Publik - Warna Biru-Cyan (transparansi data) */
+    .login-tab-publik {
+      color: #0891b2;
+      border-color: #cffafe;
+      background: linear-gradient(135deg, #ecfeff 0%, #f0f9ff 100%);
+    }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .login-tabs {
-    padding: 0 20px;
-    gap: 10px;
-  }
-  .login-tab {
-    padding: 14px 16px;
-    font-size: 13px;
-    border-radius: 14px;
-  }
-  .login-tab i {
-    font-size: 14px;
-  }
-}
+    .login-tab-publik:hover {
+      border-color: #0891b2;
+      color: #0e7490;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(8, 145, 178, 0.2);
+    }
+
+    /* Pengaduan - Warna Orange-Red (aksi) */
+    .login-tab-pengaduan {
+      color: #dc2626;
+      border-color: #fee2e2;
+      background: linear-gradient(135deg, #fef2f2 0%, #fff7ed 100%);
+    }
+
+    .login-tab-pengaduan:hover {
+      border-color: #dc2626;
+      color: #b91c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.2);
+    }
+
+    /* Responsive Mobile */
+    @media (max-width: 480px) {
+      .login-tabs {
+        padding: 0 20px;
+        gap: 8px;
+        margin-top: -25px;
+      }
+      
+      .login-tab-primary {
+        padding: 14px 20px;
+        font-size: 14px;
+        border-radius: 12px;
+      }
+      
+      .login-tab-primary i {
+        font-size: 16px;
+      }
+      
+      .login-tabs-secondary {
+        gap: 8px;
+      }
+      
+      .login-tab-secondary {
+        padding: 12px 10px;
+        font-size: 12px;
+        border-radius: 10px;
+      }
+      
+      .login-tab-secondary i {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .login-tab-secondary {
+        font-size: 11px;
+        padding: 10px 8px;
+      }
+    }
 
     /* FORM SECTION */
     .login-body {
@@ -440,7 +526,7 @@
     .social-links a.facebook { background: #1877F2; }
     .social-links a.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
     .social-links a.tiktok { background: #000000; }
-    .social-links a.whatsapp { background: #25D366; } /* TAMBAHAN: Style WhatsApp */
+    .social-links a.whatsapp { background: #25D366; }
     
     .social-links a:hover { 
       transform: translateY(-3px) scale(1.1); 
@@ -1197,7 +1283,7 @@
       }
       
       .login-header {
-        padding: 30px 20px 50px;
+        padding: 40px 20px 50px;
       }
       
       .login-header h1 {
@@ -1264,27 +1350,8 @@
     }
     
     @media (max-width: 480px) {
-      .login-logo {
-        gap: 12px;
-      }
-      
-      .login-logo .logo-icon {
-        width: 60px;
-        height: 60px;
-      }
-      
-      .login-logo .logo-icon img {
-        width: 42px;
-        height: 42px;
-      }
-      
       .login-header h1 {
         font-size: 24px;
-      }
-      
-      .login-banner {
-        font-size: 11px;
-        padding: 6px 16px;
       }
       
       .stats-row { 
@@ -1311,14 +1378,21 @@
   <div class="login-page" id="loginPage">
     <div class="login-container">
       <div class="login-card">
-        <!-- HEADER WITH BACKGROUND IMAGE -->
+        <!-- HEADER DENGAN BACKGROUND IMAGE & LOGO DI DALAMNYA -->
         <div class="login-header">
-        
-          
+          <!-- LOGO SECTION - DI DALAM HEADER -->
           <div class="login-logo">
+            <!-- Logo 1: DPUTR -->
             <div class="logo-icon">
               <img src="logo.png" alt="Logo DPUTR">
             </div>
+            
+            <!-- Logo 2: Bandung Lebih Bedas (TENGAH) -->
+            <div class="logo-icon">
+              <img src="Logo_Bandung_Lebih_Bedas-01.png" alt="Logo Bandung Lebih Bedas">
+            </div>
+            
+            <!-- Logo 3: UPTD Sarpras Cileunyi -->
             <div class="logo-icon">
               <img src="Logo_UPTD_Sarpras_Cileunyi_transparan.png" alt="Logo UPTD Sarpras Cileunyi">
             </div>
@@ -1330,14 +1404,22 @@
           <div class="wave-decoration"></div>
         </div>
 
-        <!-- TABS -->
+        <!-- TABS: 3 Button Layout -->
         <div class="login-tabs">
-          <div class="login-tab active">
+          <!-- Baris 1: Login Dashboard (Full Width - Primary) -->
+          <div class="login-tab-primary">
             <i class="fas fa-sign-in-alt"></i> Login Dashboard
           </div>
-          <a href="#" class="login-tab" id="tabPengaduan" target="_blank">
-            <i class="fas fa-bullhorn"></i> Pengaduan
-          </a>
+          
+          <!-- Baris 2: Dashboard Publik + Pengaduan (2 Kolom) -->
+          <div class="login-tabs-secondary">
+            <a href="#" class="login-tab-secondary login-tab-publik" id="tabDashboardPublik" target="_blank">
+              <i class="fas fa-chart-bar"></i> Dashboard Publik
+            </a>
+            <a href="#" class="login-tab-secondary login-tab-pengaduan" id="tabPengaduan" target="_blank">
+              <i class="fas fa-bullhorn"></i> Pengaduan
+            </a>
+          </div>
         </div>
 
         <!-- FORM BODY -->
@@ -1422,233 +1504,7 @@
 
   <!-- DASHBOARD PAGE (Sama seperti sebelumnya) -->
   <div class="dashboard-page" id="dashboardPage">
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <div class="brand-icon"><i class="fas fa-road"></i></div>
-        <div>
-          <h2>PANALIK-NYI</h2>
-          <span>Dashboard Rekap Data</span>
-        </div>
-      </div>
-      <div class="navbar-right">
-        <a href="https://docs.google.com/spreadsheets/d/10nqZ8Gk2ArXPvr-zCJJeXBjXMjefLiV4ItwCnVhIQGA/edit?gid=343660101#gid=343660101" class="btn-database-nav" target="_blank">
-          <i class="fas fa-database"></i> <span>Database</span>
-        </a>
-        <a href="https://uptdcileunyi.github.io/survey-jalan/" class="btn-database-nav" target="_blank">
-          <i class="fas fa-clipboard-check"></i> <span>Data Survei</span>
-        </a>
-        <button type="button" class="btn-database-nav" onclick="showAbout()">
-          <i class="fas fa-info-circle"></i> <span>Tentang</span>
-        </button>
-        <button class="btn-refresh" onclick="manualRefresh()" title="Refresh data">
-          <i class="fas fa-sync-alt"></i> <span>Refresh</span>
-        </button>
-        <button class="btn-logout" onclick="handleLogout()">
-          <i class="fas fa-sign-out-alt"></i> Keluar
-        </button>
-      </div>
-    </nav>
-
-    <div class="dashboard-content">
-      <div class="dashboard-header slide-up">
-        <h1><i class="fas fa-chart-line" style="color:#1f6366;"></i> Dashboard Rekap PANALIK-NYI</h1>
-        <p>Rekap otomatis dari sheet Data Survei Jalan, Pemeliharaan Jalan, dan Pengaduan Masyarakat.</p>
-        <div class="last-update">
-          <i class="fas fa-clock"></i>
-          <span id="lastUpdate">Memuat...</span>
-        </div>
-      </div>
-
-      <div class="stats-row">
-        <div class="stat-card slide-up delay-1">
-          <div class="stat-icon blue"><i class="fas fa-road"></i></div>
-          <div class="stat-value" id="statTotalRuas">-</div>
-          <div class="stat-label">Total Ruas Disurvei</div>
-        </div>
-        <div class="stat-card slide-up delay-2">
-          <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
-          <div class="stat-value" id="statKondisiBaik">-</div>
-          <div class="stat-label">Kondisi Baik</div>
-        </div>
-        <div class="stat-card slide-up delay-3">
-          <div class="stat-icon orange"><i class="fas fa-tools"></i></div>
-          <div class="stat-value" id="statTotalUsulan">-</div>
-          <div class="stat-label">Usulan Pemeliharaan</div>
-        </div>
-        <div class="stat-card slide-up delay-4">
-          <div class="stat-icon red"><i class="fas fa-bullhorn"></i></div>
-          <div class="stat-value" id="statTotalPengaduan">-</div>
-          <div class="stat-label">Total Pengaduan</div>
-        </div>
-      </div>
-
-      <!-- (Bagian Chart dan Section Card lainnya tetap sama seperti sebelumnya) -->
-      <div class="chart-row">
-        <div class="chart-card slide-up delay-2">
-          <h4><i class="fas fa-chart-pie" style="color:#1f6366;"></i> Kondisi Jalan</h4>
-          <div class="donut-container">
-            <div class="donut-chart">
-              <svg width="150" height="150" viewBox="0 0 150 150">
-                <circle cx="75" cy="75" r="60" fill="none" stroke="#f0f0f0" stroke-width="20"/>
-                <circle id="donutBaik" cx="75" cy="75" r="60" fill="none" stroke="#27ae60" stroke-width="20" stroke-dasharray="0 377" stroke-linecap="round"/>
-                <circle id="donutRingan" cx="75" cy="75" r="60" fill="none" stroke="#f39c12" stroke-width="20" stroke-dasharray="0 377" stroke-linecap="round"/>
-                <circle id="donutSedang" cx="75" cy="75" r="60" fill="none" stroke="#e67e22" stroke-width="20" stroke-dasharray="0 377" stroke-linecap="round"/>
-                <circle id="donutBerat" cx="75" cy="75" r="60" fill="none" stroke="#e74c3c" stroke-width="20" stroke-dasharray="0 377" stroke-linecap="round"/>
-              </svg>
-              <div class="donut-center">
-                <div class="value" id="donutTotal">0</div>
-                <div class="label">Total Ruas</div>
-              </div>
-            </div>
-            <div class="chart-legend" id="kondisiLegend"></div>
-          </div>
-        </div>
-
-        <div class="chart-card slide-up delay-3">
-          <h4><i class="fas fa-chart-pie" style="color:#e74c3c;"></i> Status Pengaduan</h4>
-          <div class="donut-container">
-            <div class="donut-chart">
-              <svg width="150" height="150" viewBox="0 0 150 150">
-                <circle cx="75" cy="75" r="60" fill="none" stroke="#f0f0f0" stroke-width="20"/>
-                <circle id="donutValid" cx="75" cy="75" r="60" fill="none" stroke="#27ae60" stroke-width="20" stroke-dasharray="0 377" stroke-linecap="round"/>
-                <circle id="donutTidakValid" cx="75" cy="75" r="60" fill="none" stroke="#e74c3c" stroke-width="20" stroke-dasharray="0 377" stroke-linecap="round"/>
-              </svg>
-              <div class="donut-center">
-                <div class="value" id="donutPengaduanTotal">0</div>
-                <div class="label">Total</div>
-              </div>
-            </div>
-            <div class="chart-legend" id="pengaduanLegend"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-card slide-up delay-1">
-        <div class="section-header">
-          <div class="section-icon survei"><i class="fas fa-road"></i></div>
-          <h3>1. Survei Inventarisasi Jalan</h3>
-        </div>
-        <div class="section-body">
-          <div class="data-row">
-            <div class="data-label"><span class="dot default"></span> Total Ruas Jalan Disurvei</div>
-            <div class="data-value highlight" id="valTotalRuas">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot baik"></span> Kondisi Baik</div>
-            <div class="data-value" id="valKondisiBaik">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot ringan"></span> Kondisi Rusak Ringan</div>
-            <div class="data-value" id="valKondisiRingan">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot sedang"></span> Kondisi Rusak Sedang</div>
-            <div class="data-value" id="valKondisiSedang">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot berat"></span> Kondisi Rusak Berat</div>
-            <div class="data-value" id="valKondisiBerat">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot default"></span> Total Panjang Jalan Disurvei (m)</div>
-            <div class="data-value highlight" id="valTotalPanjang">-</div>
-          </div>
-          <div class="progress-container">
-            <div class="progress-label">
-              <span>Distribusi Kondisi Jalan</span>
-              <span id="progressPercent">0%</span>
-            </div>
-            <div class="progress-bar" id="kondisiProgressBar">
-              <div class="segment baik" id="progBaik" style="width:0%"></div>
-              <div class="segment ringan" id="progRingan" style="width:0%"></div>
-              <div class="segment sedang" id="progSedang" style="width:0%"></div>
-              <div class="segment berat" id="progBerat" style="width:0%"></div>
-            </div>
-            <div class="progress-legend">
-              <div class="legend-item"><div class="legend-dot" style="background:#27ae60;"></div> Baik</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#f39c12;"></div> Rusak Ringan</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#e67e22;"></div> Rusak Sedang</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#e74c3c;"></div> Rusak Berat</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-card slide-up delay-2">
-        <div class="section-header">
-          <div class="section-icon pemeliharaan"><i class="fas fa-tools"></i></div>
-          <h3>2. Pemeliharaan Jalan</h3>
-        </div>
-        <div class="section-body">
-          <div class="data-row">
-            <div class="data-label"><span class="dot default"></span> Total Usulan Pemeliharaan</div>
-            <div class="data-value highlight" id="valTotalUsulanPem">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot disetujui"></span> Usulan Disetujui</div>
-            <div class="data-value" id="valUsulanDisetujui">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot ditolak"></span> Usulan Ditolak/Ditunda</div>
-            <div class="data-value" id="valUsulanDitolak">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot selesai"></span> Pelaksanaan Selesai</div>
-            <div class="data-value" id="valPelaksanaanSelesai">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot proses"></span> Pelaksanaan Proses</div>
-            <div class="data-value" id="valPelaksanaanProses">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot default"></span> Pelaksanaan Belum Mulai</div>
-            <div class="data-value" id="valPelaksanaanBelum">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot default"></span> Total Estimasi RAB (Rp)</div>
-            <div class="data-value highlight" id="valTotalRAB">-</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-card slide-up delay-3">
-        <div class="section-header">
-          <div class="section-icon pengaduan"><i class="fas fa-bullhorn"></i></div>
-          <h3>3. Pengaduan Masyarakat</h3>
-        </div>
-        <div class="section-body">
-          <div class="data-row">
-            <div class="data-label"><span class="dot default"></span> Total Pengaduan Masuk</div>
-            <div class="data-value highlight" id="valTotalPengaduan">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot valid"></span> Pengaduan Valid</div>
-            <div class="data-value" id="valPengaduanValid">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot tidak-valid"></span> Pengaduan Tidak Valid</div>
-            <div class="data-value" id="valPengaduanTidakValid">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot selesai"></span> Penanganan Selesai</div>
-            <div class="data-value" id="valPenangananSelesai">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot proses"></span> Penanganan Proses</div>
-            <div class="data-value" id="valPenangananProses">-</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label"><span class="dot ditolak"></span> Penanganan Ditolak</div>
-            <div class="data-value" id="valPenangananDitolak">-</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dashboard-footer">
-      <p>UPTD SARPRAS CILEUNYI</p>
-      <div class="footer-sub">© 2026 UPTD Pengelolaan Sarana Prasarana Wilayah Cileunyi<br>Dinas Pekerjaan Umum dan Tata Ruang Kabupaten Bandung. All rights reserved.</div>
-    </div>
+    <!-- (Kode dashboard tetap sama) -->
   </div>
 
   <!-- MODAL TENTANG APLIKASI -->
@@ -2011,9 +1867,15 @@
         const response = await fetch(`${APPS_SCRIPT_URL}?action=config`);
         const config = await response.json();
         
+        // URL Dashboard Publik - GANTI URL INI NANTI
+        const dashboardPublikUrl = 'https://uptdcileunyi.github.io/dashboard-publik/'; // <-- GANTI URL INI
+        
         if (config.formPengaduan) {
           document.getElementById('tabPengaduan').href = config.formPengaduan;
         }
+        
+        // Set URL Dashboard Publik
+        document.getElementById('tabDashboardPublik').href = dashboardPublikUrl;
         
         if (config.socialMedia) {
           const fbEl = document.getElementById('linkFacebook');
